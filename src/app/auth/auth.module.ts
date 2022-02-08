@@ -2,31 +2,27 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
-import { LoginComponent } from './pages/login/login.component';
-import { RegistrarComponent } from './pages/registrar/registrar.component';
-import { ComprarComponent } from './pages/comprar/comprar.component';
-import { ErrorPageComponent } from './pages/error-page/error-page.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MainComponent } from './main/main.component';
+import { RouterModule } from '@angular/router';
+import { LoginModule } from './login/login.module';
 
 
 @NgModule({
   declarations: [
-    LoginComponent,
-    RegistrarComponent,
-    ComprarComponent,
-    ErrorPageComponent
+
+    MainComponent
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
-    ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    RouterModule,
+    LoginModule
   ],
   exports: [
-    LoginComponent,
-    RegistrarComponent
+
   ]
 })
 export class AuthModule { }

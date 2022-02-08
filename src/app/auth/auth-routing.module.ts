@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { RegistrarComponent } from './pages/registrar/registrar.component';
+import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
-
+  {
+    path: '',
+    component: MainComponent,
+    children: [
+      { path: 'registrar', loadChildren: () => import('./registrar/registrar.module').then(m => m.RegistrarModule) },
+      { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
+      { path: '**', loadChildren: () => import('./error-page/error-page.module').then(m => m.ErrorPageModule) }
+    ]
+  }
 ];
 
 @NgModule({

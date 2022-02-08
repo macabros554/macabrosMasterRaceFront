@@ -1,20 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import Swal from 'sweetalert2';
-import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-registrar',
   templateUrl: './registrar.component.html',
-  styles: [
-  ]
+  styleUrls: ['./registrar.component.css']
 })
 export class RegistrarComponent implements OnInit {
-
-  /**
-   * Formulario reactive-form
-   */
 
   miFormulario: FormGroup = this.fb.group({
     name:    ['bruno', [ Validators.required, Validators.minLength(4) ]],
@@ -52,5 +48,6 @@ export class RegistrarComponent implements OnInit {
     return this.miFormulario.controls[campo].errors
             && this.miFormulario.controls[campo].touched;
   }
-
 }
+
+
