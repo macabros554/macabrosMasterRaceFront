@@ -26,18 +26,16 @@ export class RegistrarComponent implements OnInit {
   }
 
   registrar() {
-    const { name, email, calle, telefono, password } = this.miFormulario.value;
+    const user = this.miFormulario.value;
 
-    this.authService.registrar( name, email, calle, telefono, password )
+    this.authService.registrar(user)
     .subscribe({
        next: (resp => {
-
          console.log(resp);
          this.router.navigateByUrl('/');
       }),
        error: resp => {
          console.log(resp);
-
          Swal.fire('Error', resp.error.message, 'error')
        }
     });

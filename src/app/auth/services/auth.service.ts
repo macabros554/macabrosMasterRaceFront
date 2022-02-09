@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthResponse, ErrorResponse } from '../interfaces/interfaces';
+import { usuario, usuariolog } from '../interfaces/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +13,18 @@ export class AuthService {
   constructor( private http: HttpClient) { }
 
   login(email:string, password: string){
-    const url = `${this.baseUrl}/auth/login`;
-    const body =  {email, password};
-    return this.http.post<AuthResponse>(url, body);
+    const url = `${this.baseUrl}/login`;
+    const body =  {
+      "email":email,
+      "password": password};
+    const header = new HttpHeaders();
+    header.append('Access-Control-Allow-Origin','*');
+    return this.http.post<AuthResponse>(url, body,{headers:header});
   }
 
-  registrar(name:string, email:string, calle:string, telefono:string, password:string){
+  registrar(user:usuario){
     const url = `${this.baseUrl}/auth/register`;
-    const body =  {name, email, calle, telefono, password};
-    return this.http.post<AuthResponse>(url, body);
+    return this.http.post<AuthResponse>(url, user);
   }
 
   validarToken():Observable<AuthResponse>{
