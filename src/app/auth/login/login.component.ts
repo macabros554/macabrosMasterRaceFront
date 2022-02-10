@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../services/auth.service';
@@ -29,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.authService.login( this.email, this.password )
     .subscribe({
        next: (resp => {
-         console.log(resp);
+         //console.log(resp);
          localStorage.setItem('token',resp.access_token!);
          this.router.navigateByUrl('/paginas/ordenadores');
       }),
