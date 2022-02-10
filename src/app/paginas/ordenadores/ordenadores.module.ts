@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { OrdenadoresRoutingModule } from './ordenadores-routing.module';
 import { OrdenadoresComponent } from './ordenadores.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DataTablesModule } from "angular-datatables";
+
 
 
 @NgModule({
@@ -11,7 +14,9 @@ import { OrdenadoresComponent } from './ordenadores.component';
   ],
   imports: [
     CommonModule,
-    OrdenadoresRoutingModule
+    OrdenadoresRoutingModule,
+    HttpClientModule,
+    DataTablesModule
   ],exports:[
     OrdenadoresComponent
   ]

@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthResponse, ErrorResponse } from '../interfaces/interfaces';
-import { usuario, usuariolog } from '../interfaces/usuario';
+import { AuthResponse } from '../interfaces/interfaces';
+import { usuario } from '../interfaces/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -18,21 +18,19 @@ export class AuthService {
       "email":email,
       "password": password};
     const header = new HttpHeaders();
-    header.append('Access-Control-Allow-Origin','*');
+    header.set('Access-Control-Allow-Origin','*');
     return this.http.post<AuthResponse>(url, body,{headers:header});
   }
 
   registrar(user:usuario){
-    const url = `${this.baseUrl}/auth/register`;
+    const url = `${this.baseUrl}/register`;
     return this.http.post<AuthResponse>(url, user);
   }
 
   validarToken():Observable<AuthResponse>{
-    const url = `${ this.baseUrl }/products`;
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${localStorage.getItem('token')}` || '' );
-
-    return this.http.get<AuthResponse>( url, { headers } )
+    const url = `${ this.baseUrl }/validatToken`;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}` || '' );
+    return this.http.get<AuthResponse>( url, { headers} )
 
     console.log('validar toke');
   }

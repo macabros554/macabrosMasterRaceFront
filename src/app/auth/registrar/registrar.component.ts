@@ -31,7 +31,7 @@ export class RegistrarComponent implements OnInit {
     this.authService.registrar(user)
     .subscribe({
        next: (resp => {
-         console.log(resp);
+         //console.log(resp);
          this.router.navigateByUrl('/');
       }),
        error: resp => {
