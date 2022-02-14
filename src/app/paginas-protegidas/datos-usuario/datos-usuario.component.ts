@@ -9,22 +9,9 @@ import { Router } from '@angular/router';
 })
 export class DatosUsuarioComponent implements OnInit {
 
-  constructor(private authService:AuthService, private router:Router) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.checkToken()
   }
 
-  checkToken(){
-    this.authService.validarToken()
-    .subscribe({
-      next: () => console.log('Token válido'),
-      error: resp => {
-        console.log(resp.error.message);
-        this.router.navigateByUrl('/login')
-
-      }
-    }
-    )
-  }
 }

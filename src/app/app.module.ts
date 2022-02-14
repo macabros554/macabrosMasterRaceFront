@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './auth/auth.module';
 import { DataTablesModule } from "angular-datatables";
-
+import { PaginasModule } from './paginas/paginas.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -16,7 +16,7 @@ import { DataTablesModule } from "angular-datatables";
     AppRoutingModule,
     HttpClientModule,
     AuthModule,
-    DataTablesModule
+    PaginasModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -28,9 +28,10 @@ export class AuthService {
   }
 
   validarToken():Observable<AuthResponse>{
-    const url = `${ this.baseUrl }/validatToken`;
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}` || '' );
-    return this.http.get<AuthResponse>( url, { headers} )
+    const url = `${ this.baseUrl }/consultaRapida`;
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    console.log(headers);
+    return this.http.get<AuthResponse>( url, {headers} )
 
     console.log('validar toke');
   }

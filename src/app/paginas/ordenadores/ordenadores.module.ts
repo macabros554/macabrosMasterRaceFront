@@ -8,6 +8,9 @@ import { DataTablesModule } from "angular-datatables";
 
 
 
+
+
+
 @NgModule({
   declarations: [
     OrdenadoresComponent
@@ -17,6 +20,7 @@ import { DataTablesModule } from "angular-datatables";
     OrdenadoresRoutingModule,
     HttpClientModule,
     DataTablesModule
+
   ],exports:[
     OrdenadoresComponent
   ]
