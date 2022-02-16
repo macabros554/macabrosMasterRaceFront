@@ -13,7 +13,7 @@ export class AuthService {
   constructor( private http: HttpClient) { }
 
   login(email:string, password: string){
-    const url = `${this.baseUrl}/login`;
+    const url = `${this.baseUrl}/auth/login`;
     const body =  {
       "email":email,
       "password": password};
@@ -23,16 +23,14 @@ export class AuthService {
   }
 
   registrar(user:usuario){
-    const url = `${this.baseUrl}/register`;
+    const url = `${this.baseUrl}/auth/register`;
     return this.http.post<AuthResponse>(url, user);
   }
 
   validarToken():Observable<AuthResponse>{
     const url = `${ this.baseUrl }/consultaRapida`;
-    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`||'');
     console.log(headers);
     return this.http.get<AuthResponse>( url, {headers} )
-
-    console.log('validar toke');
   }
 }

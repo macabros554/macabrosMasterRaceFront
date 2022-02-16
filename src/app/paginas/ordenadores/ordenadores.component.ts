@@ -1,6 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { OrdenadorService } from '../services/ordenador.service';
+import Swal from 'sweetalert2';
+import { Ordenadores } from '../interfaces/ordenadores.interface';
 
 
 @Component({
@@ -8,31 +11,26 @@ import { Subject } from 'rxjs';
   templateUrl: './ordenadores.component.html',
   styleUrls: ['./ordenadores.component.css']
 })
-export class OrdenadoresComponent implements OnInit,OnDestroy{
+export class OrdenadoresComponent implements OnInit{
 
-  dtOptions: DataTables.Settings = {};
-  dtTrigger = new Subject<any>();
-  data:any;
-
-
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private ordenadorService:OrdenadorService) { }
 
   ngOnInit(): void {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 8
-    };
-    this.http.get('http://dummy.restapiexample.com/api/v1/employees')
-    .subscribe((res:any)=>{
-        this.data=res.data;
-        this.dtTrigger.next(null);
-    }
-    );
-
+    this.buscarOrdenadores();
   }
 
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
+  listaOrdenadores!:Ordenadores[];
+
+  buscarOrdenadores() {
+    this.ordenadorService.sacarOrdenadores()
+    .subscribe({
+       next: (resp => {
+         this.listaOrdenadores=resp;
+      }),
+       error: resp => {
+         Swal.fire('No se han podido cargar los datos del servidor')
+       }
+    });
   }
 
 }

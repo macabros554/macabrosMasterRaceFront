@@ -35,8 +35,6 @@ export class ValidarTokenGuard implements CanActivate {
           return of(false)
         })
       )
-      this.router.navigateByUrl
-      return false
   }
 
 }

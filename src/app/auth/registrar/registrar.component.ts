@@ -36,7 +36,7 @@ export class RegistrarComponent implements OnInit {
       }),
        error: resp => {
          console.log(resp);
-         Swal.fire('Error', resp.error.message, 'error')
+         Swal.fire('Email en uso')
        }
     });
   }
