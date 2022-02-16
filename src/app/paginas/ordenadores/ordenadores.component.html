@@ -1,10 +1,20 @@
 <div class="row">
-  <div class="card" style="width: 18rem;" *ngFor="let ordenador of listaOrdenadores" [routerLink]="['/paginas/ordenadores/detallesOrdenador',ordenador.id]">
-    <img class="card-img-top" src="{{ordenador.imagenes}}" alt="imagen de ordenador">
-    <div class="card-body">
-      <h5 class="card-title">{{ordenador.nombre}}</h5>
-      <p class="card-text">{{ordenador.descripcion}}</p>
-      <p>{{ordenador.precio.toFixed(2)}}€</p>
+  <div class="card" style="width: 18rem;" *ngFor="let ordenador of listaOrdenadores">
+    <div *ngIf="ordenador.cantidad>=1" [routerLink]="['/paginas/ordenadores/detallesOrdenador',ordenador.id]">
+      <img class="card-img-top" src="{{ordenador.imagenes}}" alt="imagen de ordenador">
+      <div class="card-body">
+        <h5 class="card-title">{{ordenador.nombre}}</h5>
+        <p class="card-text">{{ordenador.descripcion}}</p>
+        <p>{{ordenador.precio.toFixed(2)}}€</p>
+      </div>
+    </div>
+    <div *ngIf="ordenador.cantidad<=0">
+      <img class="card-img-top bg-danger" src="{{ordenador.imagenes}}" alt="imagen de ordenador">
+      <div class="card-body">
+        <h5 class="card-title">{{ordenador.nombre}}</h5>
+        <p class="card-text">{{ordenador.descripcion}}</p>
+        <p>{{ordenador.precio.toFixed(2)}}€</p>
+      </div>
     </div>
   </div>
 </div>

@@ -11,9 +11,15 @@ export class OrdenadorService {
   private baseUrl: string = environment.baseUrl;
   constructor( private http: HttpClient) { }
 
-  sacarOrdenadores(){
-    const url = `${this.baseUrl}/ordenador`;
+  sacarOrdenadores():Observable<Ordenadores[]>{
+    const url = `${this.baseUrl}/ordenador/listaOrdenadores`;
     const header = new HttpHeaders();
     return this.http.get<Ordenadores[]>(url,{headers:header});
+  }
+
+  sacarUnOrdenador(id:string):Observable<Ordenadores>{
+    const url = `${this.baseUrl}/ordenador/${id}/detalle`;
+    const header = new HttpHeaders();
+    return this.http.get<Ordenadores>(url,{headers:header});
   }
 }

@@ -8,42 +8,47 @@
 // match the expected interface, even if the JSON is valid.
 
 export interface Ordenadores {
-  id:          number;
-  nombre:      string;
-  ram:         RAM;
-  procesador:  Grafica;
-  grafica:     Grafica;
-  fuente:      Fuente;
-  imagenes:    string;
-  descripcion: Descripcion;
-  precio:      number;
-  discosduros: Discosduros;
+  id:                   number;
+  nombre:               string;
+  ram:                  RAM;
+  procesador:           Grafica;
+  discoduro:            Discoduro;
+  grafica:              Grafica;
+  fuente:               Fuente;
+  imagenes:             string;
+  descripcion:          Descripcion;
+  descripcionDetallada: DescripcionDetallada;
+  cantidad:             number;
+  precio:               number;
 }
 
 export enum Descripcion {
-  NullNullNull = "null null null",
+  DescripciónBasica = "Descripción basica",
 }
 
-export interface Discosduros {
+export enum DescripcionDetallada {
+  PCConTalesCaracterísticasPreparadoParaUsarEnXSectores = "Pc con tales características preparado para usar en x sectores",
+}
+
+export interface Discoduro {
   id:        number;
-  nombre:    DiscosdurosNombre;
-  tipo:      DiscosdurosTipo;
-  capacidad: DiscosdurosCapacidad;
+  nombre:    DiscoduroNombre;
+  tipo:      DiscoduroTipo;
+  capacidad: DiscoduroCapacidad;
   precio:    number;
 }
 
-export enum DiscosdurosCapacidad {
+export enum DiscoduroCapacidad {
   The1TB = "1TB",
   The2TB = "2TB",
-  The480GB = "480GB",
 }
 
-export enum DiscosdurosNombre {
+export enum DiscoduroNombre {
   KingstonA400 = "Kingston A400",
   SeagateBarraCuda = "Seagate BarraCuda",
 }
 
-export enum DiscosdurosTipo {
+export enum DiscoduroTipo {
   HDD = "HDD",
   SSD = "SSD",
 }
@@ -278,18 +283,20 @@ const typeMap: any = {
       { json: "nombre", js: "nombre", typ: "" },
       { json: "ram", js: "ram", typ: r("RAM") },
       { json: "procesador", js: "procesador", typ: r("Grafica") },
+      { json: "discoduro", js: "discoduro", typ: r("Discoduro") },
       { json: "grafica", js: "grafica", typ: r("Grafica") },
       { json: "fuente", js: "fuente", typ: r("Fuente") },
       { json: "imagenes", js: "imagenes", typ: "" },
       { json: "descripcion", js: "descripcion", typ: r("Descripcion") },
-      { json: "precio", js: "precio", typ: 0 },
-      { json: "discosduros", js: "discosduros", typ: r("Discosduros") },
+      { json: "descripcionDetallada", js: "descripcionDetallada", typ: r("DescripcionDetallada") },
+      { json: "cantidad", js: "cantidad", typ: 0 },
+      { json: "precio", js: "precio", typ: 3.14 },
   ], false),
-  "Discosduros": o([
+  "Discoduro": o([
       { json: "id", js: "id", typ: 0 },
-      { json: "nombre", js: "nombre", typ: r("DiscosdurosNombre") },
-      { json: "tipo", js: "tipo", typ: r("DiscosdurosTipo") },
-      { json: "capacidad", js: "capacidad", typ: r("DiscosdurosCapacidad") },
+      { json: "nombre", js: "nombre", typ: r("DiscoduroNombre") },
+      { json: "tipo", js: "tipo", typ: r("DiscoduroTipo") },
+      { json: "capacidad", js: "capacidad", typ: r("DiscoduroCapacidad") },
       { json: "precio", js: "precio", typ: 3.14 },
   ], false),
   "Fuente": o([
@@ -317,18 +324,20 @@ const typeMap: any = {
       { json: "precio", js: "precio", typ: 3.14 },
   ], false),
   "Descripcion": [
-      "null null null",
+      "Descripción basica",
   ],
-  "DiscosdurosCapacidad": [
+  "DescripcionDetallada": [
+      "Pc con tales características preparado para usar en x sectores",
+  ],
+  "DiscoduroCapacidad": [
       "1TB",
       "2TB",
-      "480GB",
   ],
-  "DiscosdurosNombre": [
+  "DiscoduroNombre": [
       "Kingston A400",
       "Seagate BarraCuda",
   ],
-  "DiscosdurosTipo": [
+  "DiscoduroTipo": [
       "HDD",
       "SSD",
   ],

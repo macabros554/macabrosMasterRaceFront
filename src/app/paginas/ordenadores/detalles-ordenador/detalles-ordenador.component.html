@@ -1,1 +1,13 @@
-<p>detalles-ordenador works!</p>
+<div class="card div1" *ngIf="espera">
+  <img class="card-img-top" src="{{ordenador.imagenes}}" alt="Card image cap">
+  <div class="card-body">
+    <h1 class="card-title">{{ordenador.nombre}}</h1>
+    <p class="card-text">{{ordenador.descripcionDetallada}}</p>
+    <p class="card-text"><b>Caracteristicas:</b></p>
+    <p class="card-text"><b>Procesador:</b> {{ordenador.procesador.nombre}}</p>
+    <p class="card-text"><b>Disco duro:</b> {{ordenador.discoduro.nombre}} {{ordenador.discoduro.capacidad}}</p>
+    <p class="card-text"><b>Fuente:</b>: {{ordenador.fuente.nombre}} {{ordenador.fuente.potencia}}</p>
+    <p class="card-text"><b>Grafica:</b> {{ordenador.grafica.nombre}} {{ordenador.grafica.modelo}}</p>
+    <p class="card-text"><b>Ram:</b> {{ordenador.ram.nombre}} {{ordenador.ram.kit}}GB</p>
+  </div>
+</div>
