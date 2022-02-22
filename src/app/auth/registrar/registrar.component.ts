@@ -13,11 +13,11 @@ import Swal from 'sweetalert2';
 export class RegistrarComponent implements OnInit {
 
   miFormulario: FormGroup = this.fb.group({
-    name:    ['bruno', [ Validators.required, Validators.minLength(4) ]],
-    email:    ['bruno@email.com', [ Validators.required, Validators.email ]],
-    calle: ['C/ bruno', [ Validators.required, Validators.minLength(4) ]],
-    telefono: ['222444888', [ Validators.required, Validators.minLength(9), Validators.maxLength(9) ]],
-    password: ['bruno', [ Validators.required, Validators.minLength(4) ]],
+    name:    ['', [ Validators.required, Validators.minLength(4) ]],
+    email:    ['', [ Validators.required, Validators.email ]],
+    calle: ['', [ Validators.required, Validators.minLength(4) ]],
+    telefono: ['', [ Validators.required, Validators.minLength(9), Validators.maxLength(9) ]],
+    password: ['', [ Validators.required, Validators.minLength(4) ]],
   });
 
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) { }

@@ -28,8 +28,8 @@ export class AuthService {
   }
 
   validarToken():Observable<AuthResponse>{
-    const url = `${ this.baseUrl }/consultaRapida`;
-    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`||'');
+    const url = `${ this.baseUrl }/validarToken`;
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
     console.log(headers);
     return this.http.get<AuthResponse>( url, {headers})
   }

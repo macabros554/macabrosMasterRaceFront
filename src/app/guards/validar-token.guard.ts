@@ -19,14 +19,16 @@ export class ValidarTokenGuard implements CanActivate {
     let access=false;
     console.log('Can activate');
 
+    console.log(this.authService.validarToken())
+
     return this.authService.validarToken()
     .pipe(
-        map( resp => {
+        map( (resp) => {
           console.log(resp);
           console.log("entra en la primera parte")
-          return true
+          return true;
         }),
-        catchError( err => {
+        catchError( (err) => {
           console.log(err);
           console.log("entra en la segunda parte")
           Swal.fire('Error',err.error.message,'error');

@@ -1,9 +1,39 @@
 .div1{
-  width: 34vw
+  width: 45vw;
+  float: left;
+}
+.div2{
+  text-align: center;
+  float: right;
 }
 h1{
-  font-size: 2vw;
+  font-size: 2.5vw;
 }
 p{
-  font-size: 1vw;
+  font-size: 1.5vw;
+  padding-top: 1vw;
+}
+
+select {
+  background: transparent;
+  font-size: 14px;
+  height: 5%;
+  padding: 5px;
+  width: 100%;
+  border-radius: 10vw;
+  margin-top: 2vw;
+  text-align: center;
+}
+.texto1{
+  font-size: 1.5vw;
+}
+
+.btn{
+  margin: 10%;
+  border-radius: 15px;
+  font-size:1.5vw;
+}
+
+.row{
+  display: block;
 }
