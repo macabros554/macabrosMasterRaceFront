@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Fuente, Grafica, Ordenadores, Discoduro, RAM } from '../../interfaces/ordenadores.interface';
+import { Fuente, Grafica, Ordenadores, Discoduro, RAM, Procesador } from '../../interfaces/ordenadores.interface';
 import { OrdenadorService } from '../../services/ordenador.service';
 import Swal from 'sweetalert2';
 import { ComponentesService } from '../../services/componentes.service';
-import { Procesadores } from '../../interfaces/procesador.interface';
-
-
 
 @Component({
   selector: 'app-detalles-ordenador',
@@ -19,7 +16,7 @@ export class DetallesOrdenadorComponent implements OnInit {
 
   espera:boolean=false;
   ordenador!:Ordenadores;
-  procesadores!:Procesadores[];
+  procesadores!:Procesador[];
   rams!:RAM[];
   discos!:Discoduro[];
   graficas!:Grafica[];
@@ -72,6 +69,7 @@ export class DetallesOrdenadorComponent implements OnInit {
     this.servicioComponentes.sacarDiscos(this.ordenador.discoduro.id).subscribe({
       next: (resp => {
         this.discos=resp;
+        //console.log(this.discos);
         this.buscarGraficas();
      }),
       error: resp => {
@@ -105,6 +103,10 @@ export class DetallesOrdenadorComponent implements OnInit {
         Swal.fire('No se han podido cargar las fuentes')
       }
    });
+  }
+
+  enviarOrdenador(){
+    this.serviceOrdenador.recibirOrdenador(this.ordenador);
   }
 
 }

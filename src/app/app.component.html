@@ -1,6 +1,6 @@
 
 <header class="p-2 bg-white">
-  <div class="row">
+  <div class="row gx-0">
       <div class="col-8 text-center">
           <img class="col-3" src="../assets/logo.png">
       </div>
@@ -10,7 +10,7 @@
         <img class="col-1 icono1" align="right" src="../assets/comprar.png" [routerLink]="['/paginas/ordenadores']">
     </div>
   </div>
-  <div class="row">
+  <div class="row gx-0">
     <div class="col">
       <ul class="nav nav-tabs">
         <li class="nav-item col-4"><a class="nav-link" [routerLink]="['/auth/login']" routerLinkActive="active">Login</a></li>
@@ -21,7 +21,7 @@
   </div>
 </header>
 
-<div class="row my-4">
+<div class="row my-4 gx-0">
   <div class="col">
     <router-outlet></router-outlet>
   </div>

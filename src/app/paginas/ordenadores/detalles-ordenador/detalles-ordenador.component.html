@@ -1,4 +1,4 @@
-<div *ngIf="espera" class="row">
+<div *ngIf="espera" class=" ">
   <div class="card div1 col-5">
     <img class="card-img-top" src="{{ordenador.imagenes}}" alt="Card image cap">
     <div class="card-body">
@@ -10,33 +10,31 @@
       <p class="card-text"><b>Fuente:</b>: {{ordenador.fuente.nombre}} {{ordenador.fuente.potencia}}</p>
       <p class="card-text"><b>Grafica:</b> {{ordenador.grafica.nombre}} {{ordenador.grafica.modelo}}</p>
       <p class="card-text"><b>Ram:</b> {{ordenador.ram.nombre}} {{ordenador.ram.kit}}GB</p>
+      <h2><p class="card-text"><b>Precio:</b> {{ordenador.precio}}€</p></h2>
     </div>
   </div>
 
   <div class="div2 col-5">
     <label class="col-12"><h1>Componentes configurables</h1></label>
-    <select name="Procesador" class="selector texto1">
-      <option value="{{ordenador.procesador.id}}">{{ordenador.procesador.nombre}}</option>
-      <option *ngFor="let procesador of procesadores" value="{{procesador.id}}">{{procesador.nombre}}</option>
+    <select name="Procesador" class="selector texto1" [(ngModel)]="ordenador.procesador.id">
+      <option *ngFor="let procesador of procesadores" value="{{procesador.id}}">{{procesador.nombre}} {{procesador.precio}}€</option>
     </select>
-    <select name="RAM" class="selector texto1">
-      <option value="{{ordenador.ram.id}}">{{ordenador.ram.nombre}} {{ordenador.ram.kit}}</option>
-      <option *ngFor="let ram of rams" value="{{ram.id}}">{{ram.nombre}} {{ram.kit}}</option>
+    <select name="RAM" class="selector texto1" [(ngModel)]="ordenador.ram.id">
+      <option *ngFor="let ram of rams" value="{{ram.id}}">{{ram.nombre}} {{ram.kit}} {{ram.precio}}€</option>
     </select>
-    <select name="Disco" class="selector texto1">
-      <option value="{{ordenador.discoduro.id}}">{{ordenador.discoduro.nombre}} {{ordenador.discoduro.capacidad}}</option>
-      <option *ngFor="let disco of discos" value="{{disco.id}}">{{disco.nombre}} {{disco.capacidad}}</option>
+    <select name="Disco" class="selector texto1" [(ngModel)]="ordenador.discoduro.id">
+      <option *ngFor="let disco of discos" value="{{disco.id}}">{{disco.nombre}} {{disco.capacidad}} {{disco.precio}}€</option>
     </select>
-    <select name="Grafica" class="selector texto1">
-      <option value="{{ordenador.grafica.id}}">{{ordenador.grafica.nombre}} {{ordenador.grafica.modelo}}</option>
-      <option *ngFor="let grafica of graficas" value="{{grafica.id}}">{{grafica.nombre}} {{grafica.modelo}}</option>
+    <select name="Grafica" class="selector texto1" [(ngModel)]="ordenador.grafica.id">
+      <option *ngFor="let grafica of graficas" value="{{grafica.id}}">{{grafica.nombre}} {{grafica.modelo}} {{grafica.precio}}€</option>
     </select>
-    <select name="Fuente" class="selector texto1">
-      <option value="{{ordenador.fuente.id}}">{{ordenador.fuente.nombre}} {{ordenador.fuente.potencia}}</option>
-      <option *ngFor="let fuente of fuentes" value="{{fuente.id}}">{{fuente.nombre}} {{fuente.potencia}}</option>
+    <select name="Fuente" class="selector texto1" [(ngModel)]="ordenador.fuente.id">
+      <option *ngFor="let fuente of fuentes" value="{{fuente.id}}">{{fuente.nombre}} {{fuente.potencia}} {{fuente.precio}}€</option>
     </select>
   </div>
   <div class="div2 col-5">
-    <button class="btn btn-primary" [routerLink]="['/paginasProtegidas/datos-compra']">Comprar</button>
+    <button class="btn btn-primary" (click)="enviarOrdenador()" [routerLink]="['/paginasProtegidas/datos-compra']">Comprar</button>
   </div>
+
+  <!--<button (click)="verOrdenador()">console ordenador</button>-->
 </div>

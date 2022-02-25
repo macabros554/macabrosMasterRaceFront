@@ -6,7 +6,6 @@ import { OrdenadoresComponent } from './ordenadores.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DetallesOrdenadorModule } from './detalles-ordenador/detalles-ordenador.module';
 
-
 @NgModule({
   declarations: [
     OrdenadoresComponent

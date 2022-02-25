@@ -1,14 +1,26 @@
 // To parse this data:
 //
-//   import { Convert, Ordenadores } from "./file";
+//   import { Convert, Pedido } from "./file";
 //
-//   const ordenadores = Convert.toOrdenadores(json);
+//   const pedido = Convert.toPedido(json);
 //
 // These functions will throw an error if the JSON doesn't
 // match the expected interface, even if the JSON is valid.
 
-export interface Ordenadores {
-  id:                   number;
+export interface Pedido {
+  fechaPack:         Date;
+  direccion:         string;
+  telefono:          string;
+  correoElectronico: string;
+  tipopado:          string;
+  codigotarjeta:     string;
+  tarjeta:           string;
+  dueniotarjeta:     string;
+  id:                number;
+  ordenador:         Ordenador;
+}
+
+export interface Ordenador {
   nombre:               string;
   ram:                  RAM;
   procesador:           Procesador;
@@ -18,8 +30,15 @@ export interface Ordenadores {
   imagenes:             string;
   descripcion:          string;
   descripcionDetallada: string;
-  cantidad:             number;
   precio:               number;
+}
+
+export interface Discoduro {
+  id:        number;
+  nombre:    string;
+  tipo:      string;
+  capacidad: string;
+  precio:    number;
 }
 
 export interface Procesador {
@@ -29,14 +48,6 @@ export interface Procesador {
   modelo: string;
   socket: string;
   precio: number;
-}
-
-export interface Discoduro {
-  id:        number;
-  nombre:    string;
-  tipo:      string;
-  capacidad: string;
-  precio:    number;
 }
 
 export interface Fuente {
@@ -69,12 +80,12 @@ export interface RAM {
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
 export class Convert {
-  public static toOrdenadores(json: string): Ordenadores {
-      return cast(JSON.parse(json), r("Ordenadores"));
+  public static toPedido(json: string): Pedido {
+      return cast(JSON.parse(json), r("Pedido"));
   }
 
-  public static ordenadoresToJson(value: Ordenadores): string {
-      return JSON.stringify(uncast(value, r("Ordenadores")), null, 2);
+  public static pedidoToJson(value: Pedido): string {
+      return JSON.stringify(uncast(value, r("Pedido")), null, 2);
   }
 }
 
@@ -211,17 +222,29 @@ function r(name: string) {
 }
 
 const typeMap: any = {
-  "Ordenadores": o([
+  "Pedido": o([
+      { json: "fechaPack", js: "fechaPack", typ: Date },
+      { json: "direccion", js: "direccion", typ: "" },
+      { json: "telefono", js: "telefono", typ: "" },
+      { json: "correoElectronico", js: "correoElectronico", typ: "" },
+      { json: "tipopado", js: "tipopado", typ: null },
+      { json: "codigotarjeta", js: "codigotarjeta", typ: "" },
+      { json: "tarjeta", js: "tarjeta", typ: "" },
+      { json: "dueniotarjeta", js: "dueniotarjeta", typ: "" },
+      { json: "id", js: "id", typ: 0 },
+      { json: "ordenador", js: "ordenador", typ: r("Ordenador") },
+  ], false),
+  "Ordenador": o([
       { json: "id", js: "id", typ: 0 },
       { json: "nombre", js: "nombre", typ: "" },
       { json: "ram", js: "ram", typ: r("RAM") },
-      { json: "procesador", js: "procesador", typ: r("Procesador") },
+      { json: "procesador", js: "procesador", typ: r("Grafica") },
       { json: "discoduro", js: "discoduro", typ: r("Discoduro") },
       { json: "grafica", js: "grafica", typ: r("Grafica") },
       { json: "fuente", js: "fuente", typ: r("Fuente") },
       { json: "imagenes", js: "imagenes", typ: "" },
       { json: "descripcion", js: "descripcion", typ: "" },
-      { json: "descripcionDetallada", js: "descripcionDetallada", typ: "" },
+      { json: "descripcionDetallada", js: "descripcionDetallada", typ: null },
       { json: "cantidad", js: "cantidad", typ: 0 },
       { json: "precio", js: "precio", typ: 3.14 },
   ], false),

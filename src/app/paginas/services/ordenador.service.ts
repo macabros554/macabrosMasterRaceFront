@@ -7,9 +7,11 @@ import { Ordenadores } from '../interfaces/ordenadores.interface';
 @Injectable({
   providedIn: 'root'
 })
+
 export class OrdenadorService {
   private baseUrl: string = environment.baseUrl;
   constructor( private http: HttpClient) { }
+  ordenadorCaja!:Ordenadores;
 
   sacarOrdenadores():Observable<Ordenadores[]>{
     const url = `${this.baseUrl}/ordenador/listaOrdenadores`;
@@ -21,5 +23,10 @@ export class OrdenadorService {
     const url = `${this.baseUrl}/ordenador/${id}/detalle`;
     const header = new HttpHeaders();
     return this.http.get<Ordenadores>(url,{headers:header});
+  }
+
+  recibirOrdenador(ordenador:Ordenadores){
+    this.ordenadorCaja=ordenador;
+    //console.log(ordenador);
   }
 }

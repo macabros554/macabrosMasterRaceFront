@@ -1,0 +1,59 @@
+
+<div class="container">
+  <div class="row">
+      <div class="col-lg-3 col-md-2"></div>
+      <div class="col-lg-6 col-md-8">
+
+          <div class="col-lg-12 h2">
+              Iniciar sesión
+          </div>
+          <br>
+          <div class="col-lg-12">
+              <form (ngSubmit)="comprar()">
+                <div>
+                  <label class="form-control-label">EMAIL</label>
+                  <input type="email" class="form-control" placeholder="Ingrese su email" [(ngModel)]="elPedido.correoElectronico" name="email">
+                </div>
+                <div>
+                  <label class="form-control-label">CALLE</label>
+                  <input type="text" class="form-control" placeholder="unknown" [(ngModel)]="elPedido.direccion" name="direccion">
+
+                </div>
+                <div>
+                  <label class="form-control-label">TELEFONO</label>
+                  <input type="text" class="form-control" placeholder="666222555" [(ngModel)]="elPedido.telefono" name="telefono">
+
+                </div>
+                <div>
+                  <label class="form-control-label">TIPO DE PAGO</label>
+                  <input type="text" class="form-control" placeholder="VISA" [(ngModel)]="elPedido.tipopado" name="tipopado">
+
+                </div>
+                <div>
+                  <label class="form-control-label">CODIGO</label>
+                  <input type="text" class="form-control" placeholder="333" [(ngModel)]="elPedido.codigotarjeta" name="codigotarjeta">
+
+                </div>
+                <div>
+                  <label class="form-control-label">TARJETA</label>
+                  <input type="text" class="form-control" placeholder="3333 3333 3333 3333" [(ngModel)]="elPedido.tarjeta" name="tarjeta">
+                </div>
+                <div>
+                  <label class="form-control-label">DUEÑO TARJETA</label>
+                  <input type="text" class="form-control" placeholder="anonimo anonimo anonimisimo" [(ngModel)]="elPedido.dueniotarjeta" name="dueniotarjeta">
+
+                </div>
+                <br>
+                <div class="col-lg-12 div3">
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary ">Registrar</button>
+                    </div>
+                </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+

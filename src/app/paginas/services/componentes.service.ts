@@ -2,8 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Fuente, Grafica, Ordenadores, Discoduro, RAM } from '../interfaces/ordenadores.interface';
-import { Procesadores } from '../interfaces/procesador.interface';
+import { Fuente, Grafica, Discoduro, RAM,Procesador } from '../interfaces/ordenadores.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +11,10 @@ export class ComponentesService {
   private baseUrl: string = environment.baseUrl;
   constructor( private http: HttpClient) { }
 
-  sacarProcesadoresCompatibles(id:number):Observable<Procesadores[]>{
+  sacarProcesadoresCompatibles(id:number):Observable<Procesador[]>{
     const url = `${this.baseUrl}/componente/procesador/${id}`;
     const header = new HttpHeaders();
-    return this.http.get<Procesadores[]>(url,{headers:header});
+    return this.http.get<Procesador[]>(url,{headers:header});
   }
 
   sacarRamsCompatibles(id:number):Observable<RAM[]>{

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DetallesOrdenadorRoutingModule } from './detalles-ordenador-routing.module';
 import { DetallesOrdenadorComponent } from './detalles-ordenador.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { DetallesOrdenadorComponent } from './detalles-ordenador.component';
   ],
   imports: [
     CommonModule,
-    DetallesOrdenadorRoutingModule
+    DetallesOrdenadorRoutingModule,
+    FormsModule
   ],exports:[
     DetallesOrdenadorComponent
   ]
