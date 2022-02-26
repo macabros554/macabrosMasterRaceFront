@@ -38,7 +38,6 @@ export class FormularioCompraComponent implements OnInit {
   }
 
   comprar() {
-
     this.serviceComprar.comprar(this.elPedido)
     .subscribe({
         next: (resp => {

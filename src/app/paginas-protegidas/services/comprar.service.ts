@@ -15,7 +15,9 @@ export class ComprarService {
 
   comprar(pedido:Pedido){
     const url = `${this.baseUrl}/pedido`;
-    return this.http.post<AuthResponse>(url,pedido);
+    const headers = new HttpHeaders()
+    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    return this.http.post<AuthResponse>(url,pedido,{headers});
   }
 
 }

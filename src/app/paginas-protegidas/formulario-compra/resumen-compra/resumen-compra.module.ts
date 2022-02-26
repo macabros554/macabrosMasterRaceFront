@@ -12,8 +12,6 @@ import { ResumenCompraComponent } from './resumen-compra.component';
   imports: [
     CommonModule,
     ResumenCompraRoutingModule
-  ],exports:[
-    ResumenCompraComponent
   ]
 })
 export class ResumenCompraModule { }
