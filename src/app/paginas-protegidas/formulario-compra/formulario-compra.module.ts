@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FormularioCompraRoutingModule } from './formulario-compra-routing.module';
 import { FormularioCompraComponent } from './formulario-compra.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +13,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormularioCompraRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],exports:[
     FormularioCompraComponent
   ]

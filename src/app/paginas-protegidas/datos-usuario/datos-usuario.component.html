@@ -1,1 +1,56 @@
-<p>datos-usuario works!</p>
+<div>
+  <div class="row" *ngIf="espera">
+      <div class="col-6">
+          <div class="col-lg-12 h1">
+              Tus datos
+          </div>
+          <br>
+          <div class="col-lg-12">
+            <h2>Nombre: {{usuario.name}}</h2>
+            <h2>Email: {{usuario.email}}</h2>
+            <h2>Telefono: {{usuario.telefono}}</h2>
+            <h2>Calle: {{usuario.calle}}</h2>
+            <div *ngIf="pago">
+              <h2>Tipo de pago: {{usuario.tipopado}}</h2>
+              <h2>Codigo de tarjeta: {{usuario.codigotarjeta}}</h2>
+              <h2>Tarjeta: {{usuario.tarjeta}}</h2>
+              <h2>Dueño tarjeta: {{usuario.dueniotarjeta}}</h2>
+
+            </div>
+            <a *ngIf="!pago" (click)="mostrarTipoPago()">Mostrar pago predeterminado</a>
+            <a *ngIf="pago" (click)="ocultarTipoPago()">Ocultar pago predeterminado</a>
+
+          </div>
+      </div>
+      <div class="col-6">
+        <div class="col-12 h1">
+            Pedidos
+        </div>
+        <br>
+        <div class="col-lg-12">
+          <table *ngIf="pedido">
+            <tr>
+              <th>ID</th>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Borrar</th>
+            </tr>
+            <tr *ngFor="let pedido of pedidos">
+              <td>{{pedido.id}}</td>
+              <td>insetar imagen</td>
+              <td>{{pedido.ordenador.nombre}}</td>
+              <td>{{pedido.ordenador.precio}}</td>
+              <td><button class="btn btn-danger" (click)="borrarPedido(pedido.id)">Borrar</button></td>
+
+            </tr>
+
+          </table>
+
+        </div>
+        <button class="btn btn-primary" [routerLink]="['/paginasProtegidas/datosUsuario/pedidos']">Mas</button>
+    </div>
+  </div>
+</div>
+
+

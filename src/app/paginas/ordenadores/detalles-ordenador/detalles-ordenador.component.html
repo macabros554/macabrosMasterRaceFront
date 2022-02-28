@@ -10,7 +10,7 @@
       <p class="card-text"><b>Fuente:</b>: {{ordenador.fuente.nombre}} {{ordenador.fuente.potencia}}</p>
       <p class="card-text"><b>Grafica:</b> {{ordenador.grafica.nombre}} {{ordenador.grafica.modelo}}</p>
       <p class="card-text"><b>Ram:</b> {{ordenador.ram.nombre}} {{ordenador.ram.kit}}GB</p>
-      <h2><p class="card-text"><b>Precio:</b> {{ordenador.precio}}€</p></h2>
+      <h2><p class="card-text"><b>Precio:</b> {{(ordenador.precio+ordenador.fuente.precio+ordenador.grafica.precio+ordenador.grafica.precio+ordenador.procesador.precio+ordenador.ram.precio).toFixed(2)}}€</p></h2>
     </div>
   </div>
 

@@ -16,7 +16,7 @@ export class RegistrarComponent implements OnInit {
     name:    ['', [ Validators.required, Validators.minLength(4) ]],
     email:    ['', [ Validators.required, Validators.email ]],
     calle: ['', [ Validators.required, Validators.minLength(4) ]],
-    telefono: ['', [ Validators.required, Validators.minLength(9), Validators.maxLength(9) ]],
+    telefono: ['', [ Validators.required, Validators.min(600000000), Validators.max(999999999) ]],
     password: ['', [ Validators.required, Validators.minLength(4) ]],
   });
 

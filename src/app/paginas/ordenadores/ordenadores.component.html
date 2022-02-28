@@ -5,7 +5,7 @@
       <div class="card-body">
         <h5 class="card-title">{{ordenador.nombre}}</h5>
         <p class="card-text">{{ordenador.descripcion}}</p>
-        <p>{{ordenador.precio.toFixed(2)}}€</p>
+        <p>{{(ordenador.precio+ordenador.fuente.precio+ordenador.grafica.precio+ordenador.grafica.precio+ordenador.procesador.precio+ordenador.ram.precio).toFixed(2)}}€</p>
       </div>
     </div>
     <div *ngIf="ordenador.cantidad<=0">
@@ -13,7 +13,7 @@
       <div class="card-body">
         <h5 class="card-title">{{ordenador.nombre}}</h5>
         <p class="card-text">{{ordenador.descripcion}}</p>
-        <p>{{ordenador.precio.toFixed(2)}}€</p>
+        <p>{{(ordenador.precio+ordenador.fuente.precio+ordenador.grafica.precio+ordenador.grafica.precio+ordenador.procesador.precio+ordenador.ram.precio).toFixed(2)}}€</p>
       </div>
     </div>
   </div>
