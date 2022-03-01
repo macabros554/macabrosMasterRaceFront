@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { UsuarioService } from '../../services/usuario.service';
+import { Router } from '@angular/router';
+import { ListaPedidos } from '../../interfaces/listaPedidos.interfce';
 
 @Component({
   selector: 'app-pedidos',
@@ -13,7 +16,11 @@ export class PedidosComponent implements OnInit,OnDestroy {
   dtTrigger = new Subject<any>();
   data:any;
 
-  constructor(private http:HttpClient) { }
+  pedidos!:ListaPedidos[];
+  pedido:boolean=false;
+
+
+  constructor(private http:HttpClient,private serviceUsuario:UsuarioService,private router: Router) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -30,6 +37,20 @@ export class PedidosComponent implements OnInit,OnDestroy {
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
+  }
+
+  sacarPedidos(){
+    this.serviceUsuario.buscarPedidos()
+    .subscribe({
+      next: (resp => {
+        this.pedidos=resp;
+        this.pedido=true;
+    }),
+      error: resp => {
+        //console.log(resp);
+        //Swal.fire('No tiene pedidos',resp.error.mensaje)
+      }
+  });
   }
 
 }
