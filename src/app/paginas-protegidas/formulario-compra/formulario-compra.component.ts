@@ -20,12 +20,11 @@ export class FormularioCompraComponent implements OnInit {
     direccion:         "",
     telefono:          "",
     correoElectronico: "",
-    tipopado:          "",
+    tipopago:          "",
     codigotarjeta:     "",
     tarjeta:           "",
     dueniotarjeta:     "",
-    id:                1,
-    ordenador:         this.ordenadorGuardado
+    id:                1
   }
 
   get ordenadorGuardado(){
@@ -34,18 +33,22 @@ export class FormularioCompraComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+//this.ordenadorGuardado
   comprar() {
     this.serviceComprar.comprar(this.elPedido)
     .subscribe({
         next: (resp => {
           this.router.navigateByUrl('/paginasProtegidas/datos-compra/resumenCompra/'+resp.id);
+
+          this.serviceComprar.comprarOrdenador(this.ordenadorGuardado,resp.id).subscribe();
       }),
         error: resp => {
           //console.log(resp);
           Swal.fire('Rellena todos los tados',resp.error.mensaje)
         }
     });
+
+
   }
 
 }

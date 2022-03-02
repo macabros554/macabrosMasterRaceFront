@@ -1,6 +1,6 @@
 
 <div class="text-center">
-  <div class="row" *ngIf="espera">
+  <div class="row" *ngIf="esperaPedido">
       <div class="col-6">
           <div class="col-lg-12 h1">
               Resumen compra
@@ -14,31 +14,31 @@
             <h2>Se le informara de la entrega al correo: </h2>
             <p>{{pedido.correoElectronico}}</p>
             <h2>Su pedido a sido pagado por: </h2>
-            <p>{{pedido.tipopado}}</p>
+            <p>{{pedido.tipopago}}</p>
             <h2>El dueño de la tarjeta es: </h2>
             <p>{{pedido.dueniotarjeta}}</p>
           </div>
       </div>
-      <div class="col-6">
+      <div class="col-6" *ngIf="esperaOrdenador">
         <div class="col-12 h1">
             Ordenador comprado
         </div>
         <br>
         <div class="col-lg-12">
           <h2>Nombre ordenador: </h2>
-          <p>{{pedido.ordenador.nombre}}</p>
+          <p>{{ordenador.nombre}}</p>
           <h2>RAM del ordenor: </h2>
-          <p>{{pedido.ordenador.ram.nombre}} {{pedido.ordenador.ram.kit}}</p>
+          <p>{{ordenador.ram.nombre}} {{ordenador.ram.kit}}</p>
           <h2>Procesador del ordenador: </h2>
-          <p>{{pedido.ordenador.procesador.nombre}} {{pedido.ordenador.procesador.modelo}}</p>
+          <p>{{ordenador.procesador.nombre}} {{ordenador.procesador.modelo}}</p>
           <h2>Disco duro ordenador: </h2>
-          <p>{{pedido.ordenador.discoduro.nombre}} {{pedido.ordenador.discoduro.capacidad}}</p>
+          <p>{{ordenador.discoduro.nombre}} {{ordenador.discoduro.capacidad}}</p>
           <h2>Grafica ordenador: </h2>
-          <p>{{pedido.ordenador.grafica.nombre}} {{pedido.ordenador.grafica.modelo}}</p>
+          <p>{{ordenador.grafica.nombre}} {{ordenador.grafica.modelo}}</p>
           <h2>Fuente ordenador: </h2>
-          <p>{{pedido.ordenador.fuente.nombre}} {{pedido.ordenador.fuente.potencia}}</p>
+          <p>{{ordenador.fuente.nombre}} {{ordenador.fuente.potencia}}</p>
           <h2>Precio:</h2>
-          <p>{{(pedido.ordenador.precio+pedido.ordenador.fuente.precio+pedido.ordenador.grafica.precio+pedido.ordenador.grafica.precio+pedido.ordenador.procesador.precio+pedido.ordenador.ram.precio).toFixed(2)}}€</p>
+          <p>{{(ordenador.precio+ordenador.fuente.precio+ordenador.grafica.precio+ordenador.grafica.precio+ordenador.procesador.precio+ordenador.ram.precio).toFixed(2)}}€</p>
 
         </div>
     </div>

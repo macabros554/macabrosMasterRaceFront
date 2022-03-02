@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../services/usuario.service';
 import { Usuario } from '../interfaces/usuario.interface';
-import { ListaPedidos } from '../interfaces/listaPedidos.interfce';
+import { ListaPedidos, Ordenador } from '../interfaces/listaPedidos.interfce';
 
 @Component({
   selector: 'app-datos-usuario',
@@ -20,8 +20,10 @@ export class DatosUsuarioComponent implements OnInit {
 
   pago:boolean=false;
   espera:boolean=false;
+  esperaOrdenador:boolean=false;
   usuario!:Usuario;
-  pedidos!:ListaPedidos[];
+  pedidos:ListaPedidos[]=[];
+  ordenadores:Ordenador[]=[];
   pedido:boolean=false;
 
   mostrarTipoPago(){
@@ -52,13 +54,37 @@ export class DatosUsuarioComponent implements OnInit {
     .subscribe({
       next: (resp => {
         this.pedidos=resp;
-        this.pedido=true;
+        this.sacarOrdenadores();
+
     }),
       error: resp => {
         //console.log(resp);
         //Swal.fire('No tiene pedidos',resp.error.mensaje)
       }
   });
+  }
+
+  sacarOrdenadores(){
+
+    let contador:number=0;
+    this.pedidos.forEach(pedido => {
+
+      this.serviceUsuario.buscarOrdenador(pedido.id)
+      .subscribe({
+        next: (resp => {
+
+          this.ordenadores.push(resp);
+          this.pedidos[contador].ordenador=resp;
+          contador++;
+          this.pedido=true;
+      }),
+        error: resp => {
+
+        }
+    });
+
+    });
+
   }
 
   borrarPedido(id:number){

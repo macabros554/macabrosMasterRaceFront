@@ -1,33 +1,79 @@
 // To parse this data:
 //
-//   import { Convert, Pedido } from "./file";
+//   import { Convert, Ordenador } from "./file";
 //
-//   const pedido = Convert.toPedido(json);
+//   const ordenador = Convert.toOrdenador(json);
 //
 // These functions will throw an error if the JSON doesn't
 // match the expected interface, even if the JSON is valid.
 
-export interface Pedido {
-  fechaPack:         Date;
-  direccion:         string;
-  telefono:          string;
-  correoElectronico: string;
-  tipopago:          string;
-  codigotarjeta:     string;
-  tarjeta:           string;
-  dueniotarjeta:     string;
-  id:                number;
+export interface Ordenador {
+  id:                   number;
+  nombre:               string;
+  ram:                  RAM;
+  procesador:           Procesador;
+  discoduro:            Discoduro;
+  grafica:              Grafica;
+  fuente:               Fuente;
+  imagenes:             string;
+  descripcion:          string;
+  descripcionDetallada: string;
+  cantidad:             number;
+  precio:               number;
+}
+
+export interface Procesador {
+  id:     number;
+  nombre: string;
+  marca:  string;
+  modelo: string;
+  socket: string;
+  precio: number;
+}
+export interface Discoduro {
+  id:        number;
+  nombre:    string;
+  tipo:      string;
+  capacidad: string;
+  precio:    number;
+}
+
+export interface Fuente {
+  id:            number;
+  nombre:        string;
+  certificacion: string;
+  potencia:      string;
+  precio:        number;
+}
+
+export interface Grafica {
+  id:      number;
+  nombre:  string;
+  marca:   string;
+  modelo:  string;
+  precio:  number;
+  socket?: string;
+}
+
+export interface RAM {
+  id:        number;
+  nombre:    string;
+  tipo:      string;
+  formato:   string;
+  capacidad: string;
+  kit:       string;
+  precio:    number;
 }
 
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
 export class Convert {
-  public static toPedido(json: string): Pedido {
-      return cast(JSON.parse(json), r("Pedido"));
+  public static toOrdenador(json: string): Ordenador {
+      return cast(JSON.parse(json), r("Ordenador"));
   }
 
-  public static pedidoToJson(value: Pedido): string {
-      return JSON.stringify(uncast(value, r("Pedido")), null, 2);
+  public static ordenadorToJson(value: Ordenador): string {
+      return JSON.stringify(uncast(value, r("Ordenador")), null, 2);
   }
 }
 
@@ -164,15 +210,49 @@ function r(name: string) {
 }
 
 const typeMap: any = {
-  "Pedido": o([
-      { json: "fechaPack", js: "fechaPack", typ: Date },
-      { json: "direccion", js: "direccion", typ: "" },
-      { json: "telefono", js: "telefono", typ: "" },
-      { json: "correoElectronico", js: "correoElectronico", typ: "" },
-      { json: "tipopago", js: "tipopago", typ: "" },
-      { json: "codigotarjeta", js: "codigotarjeta", typ: "" },
-      { json: "tarjeta", js: "tarjeta", typ: "" },
-      { json: "dueniotarjeta", js: "dueniotarjeta", typ: "" },
+  "Ordenador": o([
       { json: "id", js: "id", typ: 0 },
+      { json: "nombre", js: "nombre", typ: "" },
+      { json: "ram", js: "ram", typ: r("RAM") },
+      { json: "procesador", js: "procesador", typ: r("Grafica") },
+      { json: "discoduro", js: "discoduro", typ: r("Discoduro") },
+      { json: "grafica", js: "grafica", typ: r("Grafica") },
+      { json: "fuente", js: "fuente", typ: r("Fuente") },
+      { json: "imagenes", js: "imagenes", typ: "" },
+      { json: "descripcion", js: "descripcion", typ: "" },
+      { json: "descripcionDetallada", js: "descripcionDetallada", typ: "" },
+      { json: "cantidad", js: "cantidad", typ: 0 },
+      { json: "precio", js: "precio", typ: 0 },
+  ], false),
+  "Discoduro": o([
+      { json: "id", js: "id", typ: 0 },
+      { json: "nombre", js: "nombre", typ: "" },
+      { json: "tipo", js: "tipo", typ: "" },
+      { json: "capacidad", js: "capacidad", typ: "" },
+      { json: "precio", js: "precio", typ: 3.14 },
+  ], false),
+  "Fuente": o([
+      { json: "id", js: "id", typ: 0 },
+      { json: "nombre", js: "nombre", typ: "" },
+      { json: "certificacion", js: "certificacion", typ: "" },
+      { json: "potencia", js: "potencia", typ: "" },
+      { json: "precio", js: "precio", typ: 3.14 },
+  ], false),
+  "Grafica": o([
+      { json: "id", js: "id", typ: 0 },
+      { json: "nombre", js: "nombre", typ: "" },
+      { json: "marca", js: "marca", typ: "" },
+      { json: "modelo", js: "modelo", typ: "" },
+      { json: "precio", js: "precio", typ: 3.14 },
+      { json: "socket", js: "socket", typ: u(undefined, "") },
+  ], false),
+  "RAM": o([
+      { json: "id", js: "id", typ: 0 },
+      { json: "nombre", js: "nombre", typ: "" },
+      { json: "tipo", js: "tipo", typ: "" },
+      { json: "formato", js: "formato", typ: "" },
+      { json: "capacidad", js: "capacidad", typ: "" },
+      { json: "kit", js: "kit", typ: "" },
+      { json: "precio", js: "precio", typ: 3.14 },
   ], false),
 };
