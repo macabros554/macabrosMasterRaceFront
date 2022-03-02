@@ -20,11 +20,9 @@ export class DatosUsuarioComponent implements OnInit {
 
   pago:boolean=false;
   espera:boolean=false;
-  esperaOrdenador:boolean=false;
   usuario!:Usuario;
   pedidos:ListaPedidos[]=[];
-  ordenadores:Ordenador[]=[];
-  pedido:boolean=false;
+  pedidoEspera:boolean=false;
 
   mostrarTipoPago(){
     this.pago=true;
@@ -58,7 +56,6 @@ export class DatosUsuarioComponent implements OnInit {
 
     }),
       error: resp => {
-        //console.log(resp);
         //Swal.fire('No tiene pedidos',resp.error.mensaje)
       }
   });
@@ -73,13 +70,13 @@ export class DatosUsuarioComponent implements OnInit {
       .subscribe({
         next: (resp => {
 
-          this.ordenadores.push(resp);
+
           this.pedidos[contador].ordenador=resp;
           contador++;
-          this.pedido=true;
+          this.pedidoEspera=true;
       }),
         error: resp => {
-
+          Swal.fire('No tiene ordenadores asociados a un pedido',resp.error.mensaje)
         }
     });
 
@@ -91,10 +88,11 @@ export class DatosUsuarioComponent implements OnInit {
     this.serviceUsuario.borrarPedido(`${id}`)
     .subscribe({
       next: (resp => {
-        console.log(resp);
+        //console.log(resp);
+        window.location.reload();
     }),
       error: resp => {
-        console.log(resp);
+        //console.log(resp);
         Swal.fire('No tiene pedidos',resp.error.mensaje)
       }
   });

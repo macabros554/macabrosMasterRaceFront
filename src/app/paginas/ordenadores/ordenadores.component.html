@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row gx-0">
   <div class="card" style="width: 18rem;" *ngFor="let ordenador of listaOrdenadores">
     <div *ngIf="ordenador.cantidad>=1" [routerLink]="['/paginas/ordenadores/detallesOrdenador',ordenador.id]">
       <img class="card-img-top" src="{{ordenador.imagenes}}" alt="imagen de ordenador">

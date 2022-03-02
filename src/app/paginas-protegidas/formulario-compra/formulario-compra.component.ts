@@ -38,9 +38,16 @@ export class FormularioCompraComponent implements OnInit {
     this.serviceComprar.comprar(this.elPedido)
     .subscribe({
         next: (resp => {
-          this.router.navigateByUrl('/paginasProtegidas/datos-compra/resumenCompra/'+resp.id);
+          let id:number=resp.id;
 
-          this.serviceComprar.comprarOrdenador(this.ordenadorGuardado,resp.id).subscribe();
+          this.serviceComprar.comprarOrdenador(this.ordenadorGuardado,resp.id).subscribe({
+            next: resp => {
+              this.router.navigateByUrl('/paginasProtegidas/datos-compra/resumenCompra/'+id);
+            },error :resp =>{
+              Swal.fire('Ordenador no enviado')
+            }
+          });
+
       }),
         error: resp => {
           //console.log(resp);
@@ -50,5 +57,4 @@ export class FormularioCompraComponent implements OnInit {
 
 
   }
-
 }

@@ -17,8 +17,8 @@
               <h2>Dueño tarjeta: {{usuario.dueniotarjeta}}</h2>
 
             </div>
-            <a *ngIf="!pago" (click)="mostrarTipoPago()">Mostrar pago predeterminado</a>
-            <a *ngIf="pago" (click)="ocultarTipoPago()">Ocultar pago predeterminado</a>
+            <a class="btn btn-success" *ngIf="!pago" (click)="mostrarTipoPago()">Mostrar pago predeterminado</a>
+            <a class="btn btn-success" *ngIf="pago" (click)="ocultarTipoPago()">Ocultar pago predeterminado</a>
 
           </div>
       </div>
@@ -28,8 +28,8 @@
         </div>
         <br>
         <div class="col-lg-12">
-          <h2 *ngIf="!pedido">No has hecho ningun pedido aun</h2>
-          <table *ngIf="pedido">
+          <h2 *ngIf="!pedidoEspera">No has hecho ningun pedido aun</h2>
+          <table *ngIf="pedidoEspera">
             <tr>
               <th>ID</th>
               <th>Imagen</th>
@@ -39,7 +39,7 @@
             </tr>
             <tr *ngFor="let pedido of pedidos">
               <td>{{pedido.id}}</td>
-              <td>insetar imagen</td>
+              <td class="col-2"><img class="card-img-top" src="{{pedido.ordenador.imagenes}}" alt="imagen de ordenador"></td>
               <td>{{pedido.ordenador.nombre}}</td>
               <td>{{pedido.ordenador.precio}}</td>
               <td><button class="btn btn-danger" (click)="borrarPedido(pedido.id)">Borrar</button></td>
@@ -49,7 +49,8 @@
           </table>
 
         </div>
-        <button class="btn btn-primary" [routerLink]="['/paginasProtegidas/datosUsuario/pedidos']" *ngIf="pedido">Mas</button>
+        <br>
+        <button class="btn btn-primary" [routerLink]="['/paginasProtegidas/datosUsuario/pedidos']" *ngIf="pedidoEspera">Mas</button>
     </div>
   </div>
 </div>

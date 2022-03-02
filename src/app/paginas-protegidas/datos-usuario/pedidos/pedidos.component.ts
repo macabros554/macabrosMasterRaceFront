@@ -4,6 +4,8 @@ import { Subject } from 'rxjs';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 import { ListaPedidos } from '../../interfaces/listaPedidos.interfce';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-pedidos',
@@ -18,6 +20,7 @@ export class PedidosComponent implements OnInit,OnDestroy {
 
   pedidos!:ListaPedidos[];
   pedido:boolean=false;
+  pedidoEspera:boolean=false;
 
 
   constructor(private http:HttpClient,private serviceUsuario:UsuarioService,private router: Router) { }
@@ -33,6 +36,7 @@ export class PedidosComponent implements OnInit,OnDestroy {
         this.dtTrigger.next(null);
     }
     );
+    this.sacarPedidos();
   }
 
   ngOnDestroy(): void {
@@ -44,13 +48,36 @@ export class PedidosComponent implements OnInit,OnDestroy {
     .subscribe({
       next: (resp => {
         this.pedidos=resp;
-        this.pedido=true;
+        this.sacarOrdenadores();
+
     }),
       error: resp => {
-        //console.log(resp);
         //Swal.fire('No tiene pedidos',resp.error.mensaje)
       }
   });
+  }
+
+  sacarOrdenadores(){
+
+    let contador:number=0;
+    this.pedidos.forEach(pedido => {
+
+      this.serviceUsuario.buscarOrdenador(pedido.id)
+      .subscribe({
+        next: (resp => {
+
+
+          this.pedidos[contador].ordenador=resp;
+          contador++;
+          this.pedidoEspera=true;
+      }),
+        error: resp => {
+          Swal.fire('No tiene ordenadores asociados a un pedido',resp.error.mensaje)
+        }
+    });
+
+    });
+
   }
 
 }
