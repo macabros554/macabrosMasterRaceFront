@@ -69,11 +69,11 @@ export class DatosUsuarioComponent implements OnInit {
       this.serviceUsuario.buscarOrdenador(pedido.id)
       .subscribe({
         next: (resp => {
-
-
           this.pedidos[contador].ordenador=resp;
           contador++;
-          this.pedidoEspera=true;
+          if (contador==this.pedidos.length) {
+            this.pedidoEspera=true;
+          }
       }),
         error: resp => {
           Swal.fire('No tiene ordenadores asociados a un pedido',resp.error.mensaje)
