@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { DatosUsuarioRoutingModule } from './datos-usuario-routing.module';
 import { DatosUsuarioComponent } from './datos-usuario.component';
+import { HijoComponent } from './hijo/hijo.component';
 
 
 @NgModule({
   declarations: [
-    DatosUsuarioComponent
+    DatosUsuarioComponent,
+    HijoComponent
   ],
   imports: [
     CommonModule,

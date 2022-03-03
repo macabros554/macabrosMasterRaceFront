@@ -5,10 +5,12 @@ import { OrdenadoresRoutingModule } from './ordenadores-routing.module';
 import { OrdenadoresComponent } from './ordenadores.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DetallesOrdenadorModule } from './detalles-ordenador/detalles-ordenador.module';
+import { DesplazarArribaComponent } from './desplazar-arriba/desplazar-arriba.component';
 
 @NgModule({
   declarations: [
-    OrdenadoresComponent
+    OrdenadoresComponent,
+    DesplazarArribaComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { DetallesOrdenadorModule } from './detalles-ordenador/detalles-ordenador
     DetallesOrdenadorModule
 
   ],exports:[
-    OrdenadoresComponent
+    OrdenadoresComponent,
+    DesplazarArribaComponent
   ]
 })
 export class OrdenadoresModule { }

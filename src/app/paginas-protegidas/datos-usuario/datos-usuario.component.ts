@@ -12,7 +12,7 @@ import { ListaPedidos, Ordenador } from '../interfaces/listaPedidos.interfce';
 })
 export class DatosUsuarioComponent implements OnInit {
 
-  constructor(private serviceUsuario:UsuarioService,private router: Router) { }
+  constructor(private serviceUsuario:UsuarioService) { }
 
   ngOnInit(): void {
     this.sacarUsuario();
@@ -23,6 +23,8 @@ export class DatosUsuarioComponent implements OnInit {
   usuario!:Usuario;
   pedidos:ListaPedidos[]=[];
   pedidoEspera:boolean=false;
+  mensajeHijo!:ListaPedidos;
+  outprint:boolean=false;
 
   mostrarTipoPago(){
     this.pago=true;
@@ -97,4 +99,15 @@ export class DatosUsuarioComponent implements OnInit {
       }
   });
   }
+
+
+  onMensajeHijo(mensaje:ListaPedidos) {
+    this.mensajeHijo=mensaje;
+    if (this.outprint==true) {
+      this.outprint=false;
+    }else{
+      this.outprint=true;
+    }
+   }
+
 }
