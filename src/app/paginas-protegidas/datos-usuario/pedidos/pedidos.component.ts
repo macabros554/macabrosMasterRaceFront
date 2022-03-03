@@ -16,10 +16,11 @@ export class PedidosComponent implements OnInit,OnDestroy {
 
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject<any>();
-  data:any;
 
   pedidos!:ListaPedidos[];
-  pedido:boolean=false;
+  discos1TB!:ListaPedidos[];
+  proIntel!:ListaPedidos[];
+  proAMD!:ListaPedidos[];
   pedidoEspera:boolean=false;
 
 
@@ -28,14 +29,8 @@ export class PedidosComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 8
+      pageLength: 4
     };
-    this.http.get('http://dummy.restapiexample.com/api/v1/employees')
-    .subscribe((res:any)=>{
-        this.data=res.data;
-        this.dtTrigger.next(null);
-    }
-    );
     this.sacarPedidos();
   }
 
@@ -49,7 +44,7 @@ export class PedidosComponent implements OnInit,OnDestroy {
       next: (resp => {
         this.pedidos=resp;
         this.sacarOrdenadores();
-
+        this.dtTrigger.next(null);
     }),
       error: resp => {
         //Swal.fire('No tiene pedidos',resp.error.mensaje)
@@ -58,26 +53,31 @@ export class PedidosComponent implements OnInit,OnDestroy {
   }
 
   sacarOrdenadores(){
-
     let contador:number=0;
     this.pedidos.forEach(pedido => {
-
       this.serviceUsuario.buscarOrdenador(pedido.id)
       .subscribe({
         next: (resp => {
-
-
           this.pedidos[contador].ordenador=resp;
           contador++;
-          this.pedidoEspera=true;
+          if (contador==this.pedidos.length) {
+            this.tipos();
+          }
       }),
         error: resp => {
           Swal.fire('No tiene ordenadores asociados a un pedido',resp.error.mensaje)
         }
+      });
     });
-
-    });
-
   }
+
+  tipos(){
+
+    this.discos1TB = this.pedidos.filter(i => i.ordenador.discoduro.capacidad == "1TB");
+    this.proIntel = this.pedidos.filter(i => i.ordenador.procesador.marca == "AMD");
+    this.proAMD = this.pedidos.filter(i => i.ordenador.procesador.marca == "Intel");
+    this.pedidoEspera=true;
+  }
+
 
 }

@@ -9,51 +9,67 @@
           </div>
           <br>
           <div class="col-lg-12">
-              <form (ngSubmit)="comprar()">
+              <form (ngSubmit)="comprar()" [formGroup]="miFormulario" autocomplete="off">
                 <div>
                   <label class="form-control-label">EMAIL</label>
                   <input type="email" class="form-control" placeholder="Ingrese su email"
-                  [(ngModel)]="elPedido.correoElectronico" name="email" required>
+                   formControlName="correoElectronico">
+                   <span class="form-text text-danger" *ngIf="campoEsValido('correoElectronico')">
+                    Debe se un email
+                  </span>
                 </div>
                 <div>
                   <label class="form-control-label">CALLE</label>
                   <input type="text" class="form-control" placeholder="unknown"
-                  [(ngModel)]="elPedido.direccion" name="direccion" minlength="4" required>
-
+                  formControlName="direccion">
+                  <span class="form-text text-danger" *ngIf="campoEsValido('direccion')">
+                    debe tener 4 lentras como minimo
+                  </span>
                 </div>
                 <div>
                   <label class="form-control-label">TELEFONO</label>
                   <input type="text" class="form-control" placeholder="666222555"
-                  [(ngModel)]="elPedido.telefono" name="telefono" required>
-
+                  formControlName="telefono">
+                  <span class="form-text text-danger" *ngIf="campoEsValido('telefono')">
+                    debe ser un telefono valido
+                  </span>
                 </div>
                 <div>
                   <label class="form-control-label">TIPO DE PAGO</label>
-                  <input type="text" class="form-control" placeholder="VISA"
-                  [(ngModel)]="elPedido.tipopago" name="tipopado" required>
-
+                  <select name="Procesador" class="selector texto1"  formControlName="tipopago">
+                    <option value="VISA">VISA</option>
+                    <option value="MASTERCARD">Mastercard</option>
+                  </select>
                 </div>
                 <div>
                   <label class="form-control-label">CODIGO</label>
                   <input type="text" class="form-control" placeholder="333"
-                  [(ngModel)]="elPedido.codigotarjeta" name="codigotarjeta" required>
-
+                  formControlName="codigotarjeta">
+                  <span class="form-text text-danger" *ngIf="campoEsValido('codigotarjeta')">
+                    debe ser de 3 numeros
+                  </span>
                 </div>
                 <div>
                   <label class="form-control-label">TARJETA</label>
                   <input type="text" class="form-control" placeholder="3333 3333 3333 3333"
-                  [(ngModel)]="elPedido.tarjeta" name="tarjeta" required>
+                  formControlName="tarjeta">
+                  <span class="form-text text-danger" *ngIf="campoEsValido('tarjeta')">
+                    deben de ser 16 numeros
+                  </span>
                 </div>
                 <div>
                   <label class="form-control-label">DUEÑO TARJETA</label>
                   <input type="text" class="form-control" placeholder="anonimo anonimo anonimisimo"
-                  [(ngModel)]="elPedido.dueniotarjeta" name="dueniotarjeta" required>
+                  formControlName="dueniotarjeta">
+                  <span class="form-text text-danger" *ngIf="campoEsValido('dueniotarjeta')">
+                    debe tener un minimo de 4 letras
+                  </span>
                 </div>
                 <br>
                 <div class="col-12 div3">
 
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="miFormulario.invalid">Enviar</button>
                     </div>
                 </div>
               </form>

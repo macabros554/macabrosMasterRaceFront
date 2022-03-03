@@ -23,7 +23,6 @@ export class ComprarService {
 
   comprarOrdenador(ordenador:Ordenador,id:number){
     const url = `${this.baseUrl}/pedido/${id}/ordenadornuevo`;
-    console.log(url);
     const headers = new HttpHeaders()
     .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
     return this.http.post<Ordenador>(url,ordenador,{headers});

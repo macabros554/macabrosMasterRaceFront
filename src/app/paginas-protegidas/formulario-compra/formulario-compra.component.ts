@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OrdenadorService } from '../../paginas/services/ordenador.service';
-import { Pedido } from '../interfaces/pedido.interface';
 import { ComprarService } from '../services/comprar.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-compra',
@@ -13,19 +12,17 @@ import { NgForm } from '@angular/forms';
 })
 export class FormularioCompraComponent implements OnInit {
 
-  constructor(private serviceOrdenador: OrdenadorService,private serviceComprar: ComprarService, private router: Router) { }
+  constructor(private serviceOrdenador: OrdenadorService,private serviceComprar: ComprarService, private router: Router, private fb: FormBuilder) { }
 
-  elPedido:Pedido={
-    fechaPack:         new Date(),
-    direccion:         "",
-    telefono:          "",
-    correoElectronico: "",
-    tipopago:          "",
-    codigotarjeta:     "",
-    tarjeta:           "",
-    dueniotarjeta:     "",
-    id:                1
-  }
+  miFormulario: FormGroup = this.fb.group({
+    direccion:    ['', [ Validators.required, Validators.minLength(4) ]],
+    telefono:    ['', [ Validators.required, Validators.min(600000000), Validators.max(999999999) ]],
+    correoElectronico:    ['', [ Validators.required, Validators.email ]],
+    tipopago: ['', [ Validators.required]],
+    codigotarjeta: ['', [ Validators.required, Validators.min(100), Validators.max(999) ]],
+    tarjeta: ['', [ Validators.required, Validators.min(1000000000000000), Validators.max(9999999999999999) ]],
+    dueniotarjeta: ['', [ Validators.required, Validators.minLength(4) ]],
+  });
 
   get ordenadorGuardado(){
     return this.serviceOrdenador.ordenadorCaja;
@@ -35,7 +32,8 @@ export class FormularioCompraComponent implements OnInit {
   }
 //this.ordenadorGuardado
   comprar() {
-    this.serviceComprar.comprar(this.elPedido)
+    const pedido = this.miFormulario.value;
+    this.serviceComprar.comprar(pedido)
     .subscribe({
         next: (resp => {
           let id:number=resp.id;
@@ -47,14 +45,17 @@ export class FormularioCompraComponent implements OnInit {
               Swal.fire('Ordenador no enviado')
             }
           });
-
       }),
         error: resp => {
           //console.log(resp);
           Swal.fire('Rellena todos los tados',resp.error.mensaje)
         }
     });
+  }
 
+  campoEsValido( campo: string ) {
 
+    return this.miFormulario.controls[campo].errors
+            && this.miFormulario.controls[campo].touched;
   }
 }
