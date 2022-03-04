@@ -23,9 +23,17 @@ export class HijoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * metodo para enviar el ultimo pedido a la pagina que llame al componente hijo y pulse el boton de enviar
+   */
+
   enviarPadre() {
     this.eventoHijo.emit(this.ultimoPedido);
   }
+
+  /**
+   * metodo para sacar todos los pedido del usuario
+   */
 
   sacarPedidos(){
     this.serviceUsuario.buscarPedidos()
@@ -39,7 +47,9 @@ export class HijoComponent implements OnInit {
       }
   });
   }
-
+  /**
+   * metodo para sacar el ultimo pedido de la lista de pedidos del usuario
+   */
   sacarOrdenadores(){
 
     let contador:number=0;

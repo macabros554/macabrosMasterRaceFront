@@ -13,6 +13,12 @@ export class ComprarService {
   private baseUrl: string = environment.baseUrl;
   constructor( private http: HttpClient) { }
 
+  /**
+   * metodo para enviar el pedido creado a la API junto al token para asociarlo al usuario
+   * @param pedido
+   * @returns
+   */
+
   comprar(pedido:Pedido){
     const url = `${this.baseUrl}/pedido`;
     const headers = new HttpHeaders()
@@ -20,6 +26,12 @@ export class ComprarService {
     return this.http.post<Pedido>(url,pedido,{headers});
   }
 
+  /**
+   * metodo para enviar el ordenador y la id del pedido para asociar el ordenador al pedido
+   * @param ordenador
+   * @param id
+   * @returns
+   */
 
   comprarOrdenador(ordenador:Ordenador,id:number){
     const url = `${this.baseUrl}/pedido/${id}/ordenadornuevo`;

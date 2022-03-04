@@ -40,6 +40,10 @@ export class PedidosComponent implements OnInit,OnDestroy {
     this.dtTrigger.unsubscribe();
   }
 
+  /**
+   * metodo para sacar todos los pedidos del usuario
+   */
+
   sacarPedidos(){
     this.serviceUsuario.buscarPedidos()
     .subscribe({
@@ -53,6 +57,10 @@ export class PedidosComponent implements OnInit,OnDestroy {
       }
   });
   }
+
+  /**
+   * metodo para asignar a cada pedido su ordenador
+   */
 
   sacarOrdenadores(){
     let contador:number=0;

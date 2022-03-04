@@ -11,6 +11,12 @@ export class ComponentesService {
   private baseUrl: string = environment.baseUrl;
   constructor( private http: HttpClient) { }
 
+  /**
+   * metodos para sacar cada componente segun la id que le envies
+   * @param id
+   * @returns
+   */
+
   sacarProcesadoresCompatibles(id:number):Observable<Procesador[]>{
     const url = `${this.baseUrl}/componente/procesador/${id}`;
     const header = new HttpHeaders();

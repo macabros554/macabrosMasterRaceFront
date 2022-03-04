@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       { path: 'registrar', loadChildren: () => import('./registrar/registrar.module').then(m => m.RegistrarModule) },
       { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
-      { path: '**', loadChildren: () => import('./error-page/error-page.module').then(m => m.ErrorPageModule) }
+      { path: '**', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) }
     ]
   }
 ];

@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthResponse } from '../interfaces/interfaces';
 import { usuario } from '../interfaces/usuario';
-import { Ordenadores } from '../../paginas/interfaces/ordenadores.interface';
 import { Pedido } from '../../paginas-protegidas/interfaces/pedido.interface';
 
 @Injectable({
@@ -13,6 +12,13 @@ import { Pedido } from '../../paginas-protegidas/interfaces/pedido.interface';
 export class AuthService {
   private baseUrl: string = environment.baseUrl;
   constructor( private http: HttpClient) { }
+
+  /**
+   * metodo que envia la informacion que deberia ser del login a la API y la recive
+   * @param email
+   * @param password
+   * @returns
+   */
 
   login(email:string, password: string){
     const url = `${this.baseUrl}/auth/login`;
@@ -24,15 +30,22 @@ export class AuthService {
     return this.http.post<AuthResponse>(url, body,{headers:header});
   }
 
+  /**
+   * metodo que envia la informacion del formulario de registrar a la api y la recive
+   * @param user
+   * @returns
+   */
+
   registrar(user:usuario){
     const url = `${this.baseUrl}/auth/register`;
     return this.http.post<AuthResponse>(url, user);
   }
 
-  comprar(pedido:Pedido){
-    const url = `${this.baseUrl}/pedido`;
-    return this.http.post<AuthResponse>(url,pedido);
-  }
+  /**
+   * metodo para validar tocken
+   * envia el tocken que tiene en el localStorage y si es valido no recive ningun error
+   * @returns
+   */
 
   validarToken():Observable<AuthResponse>{
     const url = `${ this.baseUrl }/validarToken`;

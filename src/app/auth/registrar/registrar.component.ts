@@ -12,6 +12,10 @@ import Swal from 'sweetalert2';
 })
 export class RegistrarComponent implements OnInit {
 
+  /**
+   * formulario reactivo
+   */
+
   miFormulario: FormGroup = this.fb.group({
     name:    ['', [ Validators.required, Validators.minLength(4) ]],
     email:    ['', [ Validators.required, Validators.email ]],
@@ -25,13 +29,16 @@ export class RegistrarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * metodo para enviar el formulario
+   */
+
   registrar() {
     const user = this.miFormulario.value;
 
     this.authService.registrar(user)
     .subscribe({
        next: (resp => {
-         //console.log(resp);
          this.router.navigateByUrl('/');
       }),
        error: resp => {
@@ -40,6 +47,12 @@ export class RegistrarComponent implements OnInit {
        }
     });
   }
+
+  /**
+   * metodo para validar que cada campo sea valido
+   * @param campo
+   * @returns
+   */
 
   campoEsValido( campo: string ) {
 

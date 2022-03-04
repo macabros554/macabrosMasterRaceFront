@@ -23,6 +23,11 @@ export class OrdenadoresComponent implements OnInit{
 
   listaOrdenadores!:Ordenadores[];
 
+  /**
+   * metodo que saca la lista de ordenadores de la API y en el momento que los tiene
+   * cambia la espera a tru para que se muestren
+   */
+
   buscarOrdenadores() {
     this.ordenadorService.sacarOrdenadores()
     .subscribe({

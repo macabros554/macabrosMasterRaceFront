@@ -30,7 +30,10 @@ export class FormularioCompraComponent implements OnInit {
 
   ngOnInit(): void {
   }
-//this.ordenadorGuardado
+  /**
+   * metodo para enviar el pedido y si el pedido se crea envia el ordenador para asociar el ordenador al pedido
+   */
+
   comprar() {
     const pedido = this.miFormulario.value;
     this.serviceComprar.comprar(pedido)

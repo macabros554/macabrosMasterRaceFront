@@ -12,6 +12,11 @@ export class AppComponent {
 
   constructor( private router: Router, private validarToken:AuthService ){}
 
+  /**
+   * metodo para cerrar la secion del usuario
+   * vacia el token y te envia al login
+   */
+
   cerrarSesiopn(){
     localStorage.setItem('token',"");
     this.router.navigateByUrl('/auth/login');

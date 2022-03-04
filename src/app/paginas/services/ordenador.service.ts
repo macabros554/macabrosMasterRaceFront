@@ -13,11 +13,22 @@ export class OrdenadorService {
   constructor( private http: HttpClient) { }
   ordenadorCaja!:Ordenadores;
 
+  /**
+   * Saca la lista de ordenadores de la API
+   * @returns
+   */
+
   sacarOrdenadores():Observable<Ordenadores[]>{
     const url = `${this.baseUrl}/ordenador/listaOrdenadores`;
     const header = new HttpHeaders();
     return this.http.get<Ordenadores[]>(url,{headers:header});
   }
+
+  /**
+   * saca el ordenador que le pidas de la API
+   * @param id
+   * @returns
+   */
 
   sacarUnOrdenador(id:string):Observable<Ordenadores>{
     const url = `${this.baseUrl}/ordenador/${id}`;
@@ -25,8 +36,12 @@ export class OrdenadorService {
     return this.http.get<Ordenadores>(url,{headers:header});
   }
 
+  /**
+   * guarda en una variable el ordenador que a configurado el usuario
+   * @param ordenador
+   */
+
   recibirOrdenador(ordenador:Ordenadores){
     this.ordenadorCaja=ordenador;
-    //console.log(ordenador);
   }
 }

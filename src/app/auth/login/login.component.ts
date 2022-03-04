@@ -24,17 +24,18 @@ export class LoginComponent implements OnInit {
   email!: string;
   password!: string;
 
+  /**
+   * metodo para enviar los datos del login a la API
+   */
+
   login() {
     this.authService.login( this.email, this.password )
     .subscribe({
        next: (resp => {
-         //console.log(resp);
          localStorage.setItem('token',resp.access_token!);
          this.router.navigateByUrl('/paginas/ordenadores');
       }),
        error: resp => {
-         //console.log(resp);
-
          Swal.fire('Usuario o contraseña invalido/s', resp.error.message, 'error')
        }
     });
