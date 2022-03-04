@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PedidosRoutingModule } from './pedidos-routing.module';
 import { PedidosComponent } from './pedidos.component';
 import { DataTablesModule } from 'angular-datatables';
+import { OrdenadoresModule } from '../../../paginas/ordenadores/ordenadores.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { DataTablesModule } from 'angular-datatables';
   imports: [
     CommonModule,
     PedidosRoutingModule,
-    DataTablesModule
+    DataTablesModule,
+    OrdenadoresModule
   ],exports:[
     PedidosComponent
   ]

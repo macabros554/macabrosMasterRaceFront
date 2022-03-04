@@ -1,3 +1,11 @@
 .row{
   margin-left: 2%;
 }
+
+.agotado{
+  display: block;
+  position: absolute;
+  top: 20%;
+  opacity:0.8;
+
+}

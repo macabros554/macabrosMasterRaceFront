@@ -32,7 +32,7 @@
       <option *ngFor="let fuente of fuentes" value="{{fuente.id}}">{{fuente.nombre}} {{fuente.potencia}} {{fuente.precio}}€</option>
     </select>
   </div>
-  <div class="div2 col-5">
+  <div class="div3 col-5">
     <button class="btn btn-primary" (click)="enviarOrdenador()" [routerLink]="['/paginasProtegidas/datos-compra']">Comprar</button>
   </div>
 

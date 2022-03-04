@@ -20,7 +20,7 @@ export class OrdenadorService {
   }
 
   sacarUnOrdenador(id:string):Observable<Ordenadores>{
-    const url = `${this.baseUrl}/ordenador/${id}/detalle`;
+    const url = `${this.baseUrl}/ordenador/${id}`;
     const header = new HttpHeaders();
     return this.http.get<Ordenadores>(url,{headers:header});
   }

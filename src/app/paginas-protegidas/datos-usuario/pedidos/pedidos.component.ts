@@ -5,6 +5,7 @@ import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 import { ListaPedidos } from '../../interfaces/listaPedidos.interfce';
 import Swal from 'sweetalert2';
+import { Language } from '../../../../../../../../../VSCode2/DEC/trimestre1/Angular/practica3Paises (mostrarErrores)/src/app/pais/interfaces/interface-global';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class PedidosComponent implements OnInit,OnDestroy {
   dtTrigger = new Subject<any>();
 
   pedidos!:ListaPedidos[];
+  pedidosDefinitivos:ListaPedidos[]=[];
   discos1TB!:ListaPedidos[];
   proIntel!:ListaPedidos[];
   proAMD!:ListaPedidos[];
@@ -44,7 +46,7 @@ export class PedidosComponent implements OnInit,OnDestroy {
       next: (resp => {
         this.pedidos=resp;
         this.sacarOrdenadores();
-        this.dtTrigger.next(null);
+
     }),
       error: resp => {
         //Swal.fire('No tiene pedidos',resp.error.mensaje)
@@ -61,6 +63,7 @@ export class PedidosComponent implements OnInit,OnDestroy {
           this.pedidos[contador].ordenador=resp;
           contador++;
           if (contador==this.pedidos.length) {
+            this.dtTrigger.next(this.pedidos);
             this.tipos();
           }
       }),
@@ -76,6 +79,7 @@ export class PedidosComponent implements OnInit,OnDestroy {
     this.discos1TB = this.pedidos.filter(i => i.ordenador.discoduro.capacidad == "1TB");
     this.proIntel = this.pedidos.filter(i => i.ordenador.procesador.marca == "AMD");
     this.proAMD = this.pedidos.filter(i => i.ordenador.procesador.marca == "Intel");
+    this.pedidosDefinitivos=this.pedidos;
     this.pedidoEspera=true;
   }
 

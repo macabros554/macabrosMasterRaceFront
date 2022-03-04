@@ -5,12 +5,12 @@ import { OrdenadoresRoutingModule } from './ordenadores-routing.module';
 import { OrdenadoresComponent } from './ordenadores.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DetallesOrdenadorModule } from './detalles-ordenador/detalles-ordenador.module';
-import { DesplazarArribaComponent } from './desplazar-arriba/desplazar-arriba.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
     OrdenadoresComponent,
-    DesplazarArribaComponent
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +20,7 @@ import { DesplazarArribaComponent } from './desplazar-arriba/desplazar-arriba.co
 
   ],exports:[
     OrdenadoresComponent,
-    DesplazarArribaComponent
+    LoadingComponent
   ]
 })
 export class OrdenadoresModule { }

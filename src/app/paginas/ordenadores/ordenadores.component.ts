@@ -19,6 +19,8 @@ export class OrdenadoresComponent implements OnInit{
     this.buscarOrdenadores();
   }
 
+  espera:boolean=false;
+
   listaOrdenadores!:Ordenadores[];
 
   buscarOrdenadores() {
@@ -26,6 +28,7 @@ export class OrdenadoresComponent implements OnInit{
     .subscribe({
        next: (resp => {
          this.listaOrdenadores=resp;
+         this.espera=true;
       }),
        error: resp => {
          Swal.fire('No se han podido cargar los datos del servidor')

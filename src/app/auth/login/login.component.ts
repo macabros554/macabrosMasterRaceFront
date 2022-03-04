@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
          this.router.navigateByUrl('/paginas/ordenadores');
       }),
        error: resp => {
-         console.log(resp);
+         //console.log(resp);
 
          Swal.fire('Usuario o contraseña invalido/s', resp.error.message, 'error')
        }

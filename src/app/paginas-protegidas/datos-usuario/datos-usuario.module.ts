@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DatosUsuarioRoutingModule } from './datos-usuario-routing.module';
 import { DatosUsuarioComponent } from './datos-usuario.component';
 import { HijoComponent } from './hijo/hijo.component';
+import { OrdenadoresModule } from '../../paginas/ordenadores/ordenadores.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { HijoComponent } from './hijo/hijo.component';
   ],
   imports: [
     CommonModule,
-    DatosUsuarioRoutingModule
+    DatosUsuarioRoutingModule,
+    OrdenadoresModule
   ],exports:[
     DatosUsuarioComponent
   ]
