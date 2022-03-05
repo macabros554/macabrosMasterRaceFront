@@ -42,7 +42,6 @@ export class RegistrarComponent implements OnInit {
          this.router.navigateByUrl('/');
       }),
        error: resp => {
-         console.log(resp);
          Swal.fire('Email en uso')
        }
     });
