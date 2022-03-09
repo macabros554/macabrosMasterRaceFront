@@ -28,7 +28,7 @@ export class ValidarTokenGuard implements CanActivate {
         }),
         catchError( (err) => {
           //console.log(err);
-          Swal.fire('Error',err.error.message,'error');
+          Swal.fire('Login no iniciado',err.error.message,'error');
 
           this.router.navigateByUrl('/auth/login');
           return of(false)

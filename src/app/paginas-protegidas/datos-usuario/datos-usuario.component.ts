@@ -43,7 +43,6 @@ export class DatosUsuarioComponent implements OnInit {
           this.sacarPedidos();
       }),
         error: resp => {
-          //console.log(resp);
           Swal.fire('Usuario indispuesto',resp.error.mensaje)
         }
     });
@@ -58,7 +57,8 @@ export class DatosUsuarioComponent implements OnInit {
 
     }),
       error: resp => {
-        //Swal.fire('No tiene pedidos',resp.error.mensaje)
+        this.pedidos=[];
+        this.pedidoEspera=false;
       }
   });
   }
@@ -85,16 +85,14 @@ export class DatosUsuarioComponent implements OnInit {
     });
 
   }
-
+/// que no recarge la pagina
   borrarPedido(id:number){
     this.serviceUsuario.borrarPedido(`${id}`)
     .subscribe({
       next: (resp => {
-        //console.log(resp);
-        window.location.reload();
+        this.sacarPedidos();
     }),
       error: resp => {
-        //console.log(resp);
         Swal.fire('No tiene pedidos',resp.error.mensaje)
       }
   });

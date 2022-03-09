@@ -31,7 +31,10 @@ export class PedidosComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 4
+      pageLength: 4,
+      language:{
+        url:"http://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+      }
     };
     this.sacarPedidos();
   }
@@ -71,7 +74,7 @@ export class PedidosComponent implements OnInit,OnDestroy {
           this.pedidos[contador].ordenador=resp;
           contador++;
           if (contador==this.pedidos.length) {
-            this.dtTrigger.next(this.pedidos);
+            this.dtTrigger.next(null);
             this.tipos();
           }
       }),

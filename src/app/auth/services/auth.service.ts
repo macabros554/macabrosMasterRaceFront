@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthResponse } from '../interfaces/interfaces';
 import { usuario } from '../interfaces/usuario';
-import { Pedido } from '../../paginas-protegidas/interfaces/pedido.interface';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { catchError, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +51,7 @@ export class AuthService {
     const url = `${ this.baseUrl }/validarToken`;
     const headers = new HttpHeaders()
     .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    //console.log(headers);
     return this.http.get<AuthResponse>( url, {headers})
   }
+
 }
